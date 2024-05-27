@@ -14,7 +14,7 @@ const placeOrder = async (req, res) => {
     });
     await newOrder.save();
     await User.findByIdAndUpdate(req.body.userId, { cartData: {} });
-    const frontend_url = "http://localhost:5173";
+    const frontend_url = "http://localhost:5174";
 
     // Budowanie line_items
     const line_items = req.body.items.map((item) => ({
@@ -79,5 +79,27 @@ const userOrders = async (req, res) => {
  }
 };
 
-export { placeOrder, userOrders, verifyOrder };
+const ListOrders = async (req, res) => {
+  try {
+   const orders = await orderModel.find({})
+   res.json({success:true,data:orders})
+   
+  } catch (error) {
+   console.log(error);
+   res.json({success:false,message:"Error"})
+  }
+ };
+ const updateStatus = async (req, res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId, {status:req.body.status})
+    res.json({success:true,message: "Status updated"})
+  } catch (error) {
+    console.log(error);
+    res.json({success:false,message: "Error"})
+  }
+ }
+ 
+ 
+
+export { ListOrders, placeOrder, updateStatus, userOrders, verifyOrder };
 
