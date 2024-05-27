@@ -5,6 +5,7 @@ import Loginpopup from './components/Loginpopup/Loginpopup'
 import Navbar from './components/Navbar/Navbar'
 import Cart from './pages/Cart/Cart'
 import Home from './pages/Home/home'
+import MyOrders from './pages/MyOrders/MyOrders'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Verify from './pages/Verify/Verify'
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/order' element={<PlaceOrder/>} />
         <Route path='/verify' element={<Verify/>} />
+        <Route path='/myorders' element={<MyOrders/>} />
       </Routes>
     </div>
      <Footer/>

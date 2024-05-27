@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 import './PlaceOrder.css';
 const PlaceOrder = () => {
@@ -15,6 +16,19 @@ const PlaceOrder = () => {
     country: "",
     phone: "", 
   });
+const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!token){
+      navigate('/cart')
+    }
+    else if (GetTotal()===0)
+      {
+        navigate('/cart')
+      }
+
+    
+  },[token])
    
   const placeOrder = async (event) => {
     event.preventDefault();
