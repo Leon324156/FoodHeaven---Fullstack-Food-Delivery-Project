@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 import './navbar.css';
-const Navbar = ({setShowLogin}) => {
+const Navbar = ({setShowLogin,setShowContact}) => {
 
     const [menu,setMenu] = useState('home');
     const { GetTotal,token,setToken } = useContext(StoreContext);
@@ -29,6 +29,9 @@ const Navbar = ({setShowLogin}) => {
            <Link to="/cart"> <img src={assets.basket_icon} alt=''/> </Link>
             <div className={GetTotal()===0?'':"dot"}></div> 
         </div>
+        {token?<button onClick={()=>setShowContact(true)}>Contact</button>
+        : ""
+        }
         {!token?<button onClick={()=>setShowLogin(true)}>Sign in</button>
         :  <div className='navbar-profile'>
           <img src={assets.profile_icon} alt="" />
@@ -39,6 +42,7 @@ const Navbar = ({setShowLogin}) => {
            </ul>
           </div>
         }
+
         
         </div>
     </div>

@@ -14,7 +14,8 @@ const placeOrder = async (req, res) => {
     });
     await newOrder.save();
     await User.findByIdAndUpdate(req.body.userId, { cartData: {} });
-    const frontend_url = "http://localhost:5174";
+    const frontend_url = process.env.FRONTEND_URL;
+    
 
     // Budowanie line_items
     const line_items = req.body.items.map((item) => ({

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
+import Contactpopup from './components/Contactpopup/Contactpopup'
 import Footer from './components/Footer/Footer'
 import Loginpopup from './components/Loginpopup/Loginpopup'
 import Navbar from './components/Navbar/Navbar'
@@ -8,16 +10,18 @@ import Home from './pages/Home/home'
 import MyOrders from './pages/MyOrders/MyOrders'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Verify from './pages/Verify/Verify'
-
 const App = () => {
 
   const [showLogin,setShowLogin] = useState(false)
+  const [showContact,setShowContact] = useState(false)
+  
 
   return (
     <>
     {showLogin?<Loginpopup setShowLogin={setShowLogin}/>:<></>}
+    {showContact?<Contactpopup setShowContact={setShowContact}/> : <></>}
     <div className='app'>
-      <Navbar setShowLogin={setShowLogin} />
+      <Navbar setShowLogin={setShowLogin} setShowContact={setShowContact}/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
