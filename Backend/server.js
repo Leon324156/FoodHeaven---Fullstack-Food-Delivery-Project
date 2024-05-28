@@ -4,6 +4,7 @@ import express from "express"
 import { connectDB } from "./config/db.js"
 import CardRouter from "./routes/cartRoute.js"
 import foodRouter from "./routes/foodRoute.js"
+import MessageRouter from "./routes/messageRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 import userRouter from "./routes/userRoute.js"
 const app = express()
@@ -20,6 +21,7 @@ app.use("/images",express.static("uploads"))
 app.use("/api/user", userRouter)
 app.use("/api/cart",CardRouter)
 app.use("/api/order",orderRouter)
+app.use("/api/message",MessageRouter)
 
 app.get("/",(req,res)=> {
     res.send("API WORKING")
