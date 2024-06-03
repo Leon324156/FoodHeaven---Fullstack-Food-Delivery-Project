@@ -9,7 +9,11 @@
 {
     width: 150px;
 }
-
+/* .navbar .burgerlogo
+{
+    width: 150px;
+    height: 150px;
+} */
 .navbar-menu
 {
     display: flex;

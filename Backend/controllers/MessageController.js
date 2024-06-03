@@ -26,6 +26,16 @@ const sendMessage = async (req, res) => {
     }
    };
 
+   const Removemessage = async (req, res) => {
+    try {
+      await Message.findByIdAndDelete(req.body.id)
+      res.json({success:true,message:"Message removed successfully"})
+    } catch (error) {
+      console.log(error)
+      res.json({success:false,message:"Error"})
+    }
+  }
 
-  export { ListMessages, sendMessage };
+
+  export { ListMessages, Removemessage, sendMessage };
 
