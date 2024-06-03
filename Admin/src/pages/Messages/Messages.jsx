@@ -24,6 +24,17 @@ const Messages = ({ url }) => {
     fetchAllMessages()
   }, [url]) 
 
+
+  const removemessage = async(messageid) => {
+    const response = await axios.post(`${url}/api/message/remove`, {id:messageid})
+    await fetchAllMessages()
+    if (response.data.success){
+      toast.success(response.data.message)
+    }
+    else {
+      toast.error(response.data.message)
+    }
+    }
   return (
     <div className='message-add'>
       <h3>Messages page</h3>
@@ -37,6 +48,7 @@ const Messages = ({ url }) => {
               {message.email && <p>Email: {message.email}</p>}
               <p>Date: {new Date(message.date).toLocaleString()}</p>
             </div>
+            <p className='cursor' onClick={()=>removemessage(message._id)}>x</p>
           </div>
         ))}
       </div>
